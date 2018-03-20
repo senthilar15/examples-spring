@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.springframework.org/schema/beans
+                http://www.springframework.org/schema/beans/spring-beans.xsd" default-lazy-init="true" 
+                default-autowire="byName" default-autowire-candidates="java-script-definitiveguide,author" >
+                <!--
+              ==================================================================================================================================
+                
+                default-lazy-init="true|false"  -> by defalt it lazy initilaizes all beans , it always can be overriden by lazy-init="true|false" at <bean>
+                
+              ====================================================================================================================================
+                
+                 by default it auto wires by name of the bean , it can always be overidden by defining autowire='byName|byType|constructor' on local <bean>
+                <bean autowire='byName|byType|constructor' />
+               
+              =======================================================================================================================================
+               
+               default-autowire-candidates="*" - by default it autowires all beans , it can always be overidden by autowire-candidate="false"
+                
+                default-autowire-candidates="*" or default-autowire-candidates="Book,*cation,Auth*"
+               =======================================================================================================================================
+               
+               
+                 -->
+                
+ <bean name="java-headfirst"  class="com.examples.beans.xmls.lazy.auto.Book" >
+			 <constructor-arg value="Head First java"></constructor-arg>
+			 <constructor-arg value="500"></constructor-arg>
+ </bean>
+ 
+ <bean name="java-headfirstJsp" class="com.examples.beans.xmls.lazy.auto.Book" autowire="byType" >
+			 <constructor-arg value="Head First jsp and  servlet"></constructor-arg>
+			 <constructor-arg value="600"></constructor-arg>
+ </bean>
+ 
+ <bean name="java-headfirstDesign" class="com.examples.beans.xmls.lazy.auto.Book" >
+			 <constructor-arg value="Head First Design Pattern"></constructor-arg>
+			 <constructor-arg value="700"></constructor-arg>
+ </bean>
+ 
+<bean name="java-script-definitiveguide" class="com.examples.beans.xmls.lazy.auto.Book" autowire="constructor"/>
+			 
+ 
+ 
+ <bean name="java-script-goodparts" class="com.examples.beans.xmls.lazy.auto.Book" lazy-init="false" >
+			 <constructor-arg value="Java script good parts"></constructor-arg>
+			 <constructor-arg value="500"></constructor-arg>
+ </bean>
+ 
+  <bean name="category" class="com.examples.beans.xmls.lazy.auto.Category" >
+			 <constructor-arg value="1"></constructor-arg>
+ </bean>
+ 
+ <!--  <bean name="java-script" class="com.examples.beans.xmls.lazy.auto.Category" >
+			 <constructor-arg value="2"></constructor-arg>
+ </bean>
+  -->
+ 
+ <bean name="publication" class="com.examples.beans.xmls.lazy.auto.Publication" >
+			 <constructor-arg value="1"></constructor-arg>
+ </bean>
+ 
+ <bean name="author" id="author" class="com.examples.beans.xmls.lazy.auto.Author"  lazy-init="false">
+			 <constructor-arg value="1"></constructor-arg>
+			 <constructor-arg value=" Unknown"></constructor-arg>
+ </bean>
+
+</beans>

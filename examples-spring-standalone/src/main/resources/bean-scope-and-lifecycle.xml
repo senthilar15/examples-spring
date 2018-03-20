@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.springframework.org/schema/beans
+                http://www.springframework.org/schema/beans/spring-beans.xsd" default-lazy-init="true" 
+                default-autowire="byName" default-autowire-candidates="*" >
+               <!-- 
+               
+               default-init-method , default-destroy-method - (<beans>)default init and destroy method for all beans
+               
+               
+               if a bean has all three mechanisms of inialize and destroy then it called in the below order
+               
+               @postConstruct, @PreDestroy - Called first
+               InitializingBean (afterPropertiesSet() ), DisposableBean (Destroy ) - Called Next
+               
+               init-method , destroy-method - called finally
+               
+               
+                --> 
+               
+               
+               
+                <bean id="lifecycle" name="lifecycleBean" 
+                                     class="com.examples.beans.xmls.postprocess.DemoBeanLifeCycle"
+                                     init-method="init" 
+                                     destroy-method="close">  
+                
+                </bean>
+
+
+                <bean id="lifecycle1" name="lifecycleBean1" 
+                                     class="com.examples.beans.xmls.postprocess.DemoBeanOverridedLifeCycle" 
+                                     init-method="afterPropertiesSet" 
+                                     destroy-method="destroy">  
+                
+                </bean>
+                
+                
+               <!--  
+               
+               
+                  Factory Method and Factory bean demo Static method demo
+               
+                  
+               
+               -->
+               
+               <bean id="caraudi"   class="com.examples.beans.xmls.postprocess.Audi" lazy-init="false"></bean>
+               <bean id="cartesla"   class="com.examples.beans.xmls.postprocess.Tesla"></bean>
+               
+               <bean id="audi" name="audicar" 
+                                     class="com.examples.beans.xmls.postprocess.Car" 
+                                     factory-method="getCar" > 
+                                     
+                                     <constructor-arg name="brand" value="Audi"></constructor-arg> 
+               </bean>
+               
+              
+               
+               
+               
+               <bean id="tesla" name="tesla" 
+                                     class="com.examples.beans.xmls.postprocess.CarFactory" 
+                                     factory-method="getCar"> 
+                                     
+                                     <constructor-arg name="brand" value="tesla"></constructor-arg> 
+               </bean> 
+               
+                 
+               <!--  
+               
+               
+               Factory Bean - demo - Instance method
+               
+               -->
+               
+               
+               <bean id="bikefactory" name="bikefactory" 
+                                     class="com.examples.beans.xmls.postprocess.BikeFactory" lazy-init="false"
+                                     > 
+                                     
+                
+               </bean>
+               
+               
+               <bean id="royalenfieldbike" name="royal-enfield" 
+                             
+                                     factory-bean="bikefactory"
+                                     factory-method="getBike"> 
+                                     
+                                     <constructor-arg name="brand" value="royal-enfield"></constructor-arg> 
+               </bean>
+               
+               
+               <bean id="herobike" name="hero" 
+                            
+                                      factory-bean="bikefactory"
+                                      factory-method="getBike"> 
+                                     
+                                     <constructor-arg name="brand" value="Hero"></constructor-arg> 
+               </bean>
+
+</beans>

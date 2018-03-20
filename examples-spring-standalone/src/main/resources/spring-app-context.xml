@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.springframework.org/schema/beans
+                http://www.springframework.org/schema/beans/spring-beans.xsd">
+       
+        <import resource="classpath:college/college-beans.xml"/>
+
+      <!--   <bean id="manage" class="com.examples.beans.xmls.Manager" depends-on="project">
+              <constructor-arg value="Manager"></constructor-arg>
+        </bean> -->
+        
+        <bean id="manage" class="com.examples.beans.xmls.Manager" >
+              <constructor-arg value="Manager"></constructor-arg>
+        </bean>
+
+        <bean  id="project" class="com.examples.beans.xmls.Project">
+                
+        </bean>
+
+        <!-- more bean definitions go here -->
+
+</beans>
