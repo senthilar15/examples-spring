@@ -12,6 +12,7 @@ import org.springframework.context.MessageSource;
 import org.springframework.core.env.Environment;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.stereotype.Component;
+import org.springframework.validation.ValidationUtils;
 
 import com.example.annotation.movies.MovieCatalog;
 import com.example.annotation.movies.daos.CustomerPreferenceDao;

@@ -1,5 +1,6 @@
 package com.example.annotation.movies;
 
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import com.example.annotation.movies.qualifiers.MovieQualifier;

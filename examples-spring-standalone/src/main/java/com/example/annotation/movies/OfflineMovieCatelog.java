@@ -8,11 +8,21 @@ import com.example.annotation.movies.qualifiers.Genre;
 /*@Component*/
 public class OfflineMovieCatelog extends MovieCatalog{
 
+	private String genre;
+
+
 	public OfflineMovieCatelog() {
 		super();
+		this.genre ="Empty";
 	}
 	public OfflineMovieCatelog(String genre) {
 		super(genre);
+		this.genre = genre;
+	}
+	
+	
+	public String getGenre() {
+		return genre;
 	}
 
 }

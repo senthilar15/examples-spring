@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.springframework.org/schema/beans
+                http://www.springframework.org/schema/beans/spring-beans.xsd" default-lazy-init="true" >
+                <!--
+                  Demonstrating Method injector , this is used when one bean is singleton scope and dependent/collaborator bean
+                  is in prototype  , whenever a method in sigleton scoped bean called it needs newly created
+                  prototype scoped bean , which will be issued by container with the help of lookup .
+                  
+                  Lookup method may be abstract/concrete method
+               
+                 -->
+                 
+                 <!-- a stateful bean deployed as a prototype (non-singleton) -->
+				<bean id="myCommand" class="com.examples.beans.xmls.methodinjection.Command" scope="prototype">
+				        <!-- inject dependencies here as required -->
+				</bean>
+				
+				<!-- commandProcessor uses statefulCommandHelper -->
+				<bean id="commandManager" class="com.examples.beans.xmls.methodinjection.CommandManager">
+				        <lookup-method name="createCommand" bean="myCommand"/>
+				</bean>
+
+
+</beans>

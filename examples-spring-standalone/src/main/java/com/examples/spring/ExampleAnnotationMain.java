@@ -14,7 +14,7 @@ public class ExampleAnnotationMain {
 		try {
 			
 			MovieRecommender mr = ExampleAppAnnotationConfig.lookupBean(MovieRecommender.class);
-			SimpleMovieLister movielister = ExampleAppAnnotationConfig.lookupBean(SimpleMovieLister.class);
+			//SimpleMovieLister movielister = ExampleAppAnnotationConfig.lookupBean(SimpleMovieLister.class);
 			
 			
 			

@@ -6,12 +6,15 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.ComponentScan.Filter;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.FilterType;
 
 import com.example.annotation.movies.ActionMovieCatelog;
 import com.example.annotation.movies.ComedyMoviesCatelog;
 import com.example.annotation.movies.MovieCatalog;
 import com.example.annotation.movies.OfflineMovieCatelog;
+import com.example.annotation.movies.SimpleMovieLister;
 import com.example.annotation.movies.qualifiers.Genre;
 import com.example.annotation.movies.qualifiers.MovieQualifier;
 
@@ -27,7 +30,9 @@ import com.example.annotation.movies.qualifiers.MovieQualifier;
  */
 
 @Configuration
-@ComponentScan(basePackages = "com.example.annotation.movies")
+@ComponentScan(basePackages = "com.example.annotation.movies",
+includeFilters = @Filter(type = FilterType.REGEX, pattern = "com\\.example\\.*"),
+excludeFilters = @Filter(type = FilterType.REGEX, pattern = ".*.SimpleMovieLister" ))
 public class MovieConfiguration {
 	
 	

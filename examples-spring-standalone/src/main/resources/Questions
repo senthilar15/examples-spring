@@ -1,0 +1,15 @@
+Questions :
+
+1. Default scope of any bean ? --> Singleton 
+2. @lazy -> what this will do ? --> lazily initialize the bean , loads on demand
+3. How scope value can be provided ? --> @scope("prototype")
+4. Difference between @Bean @Component @Configuration ?
+
+    @Bean inside @Configuration are generated through CGLIB , invoking methods on method will actually done through spring container.
+    @Component ->  @Component classes are not enhanced with CGLIB to intercept the invocation of methods and fields
+5. Difference between @Bean inside @Component and @Bean inside @Configuration ?
+6. Role of proxyTargetClass inside ScopedProxy on @ComponentScan ?
+7. Difference between @Autowired , @Inject
+8. @Qualifier vs @Named
+9. Relation between @Component , @Named , @ManagedBean ?  -- > Not composable, use to annotate a class as component
+10. What is composable annotation

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.springframework.org/schema/beans
+                http://www.springframework.org/schema/beans/spring-beans.xsd">
+       
+   
+        <bean id="dept" class="com.examples.beans.xmls.Department" >
+			 <constructor-arg value="CSE"></constructor-arg>
+				<property name="rooms">
+					<list>
+			          <ref bean="croom"/>
+			          <ref bean="croom"/>
+			          <ref bean="croom"/>
+					</list>
+				</property>
+              	<property name="subjectMappings">
+              		<map>
+              			<entry key-ref="subject" value-ref="teacher"></entry>
+              		</map>
+	         	</property>
+				<property name="years">
+					<props>
+						<prop key="1">Fresher</prop>
+						<prop key="2">Senior</prop>
+						<prop key="3">Super Senior</prop>
+						<prop key="4">Super Super Senior</prop>
+					</props>
+				</property>
+				<property name="students" >
+					<set>
+						<!-- <idref bean=""/> -->
+						<ref bean="student" /> 
+					</set>
+				</property>
+				<property name="mailids">
+				  <value>
+			            cse=cse@asdf.com
+			            mech=mech@asdf.co
+			       </value>
+				</property>
+          </bean>
+
+         <bean  id="croom" class="com.examples.beans.xmls.ClassRoom">
+                <constructor-arg value="Room No1"></constructor-arg>
+                <constructor-arg value="1"></constructor-arg>
+                <property  name="dept" ref="dept"></property>
+         </bean>
+         
+         <bean  id="subject" class="com.examples.beans.xmls.Subject"> 
+                <property  name="name" value="java-spring"></property>
+         </bean>
+         
+         <bean  id="student" class="com.examples.beans.xmls.Student"> 
+                <constructor-arg type="String" value="Student no1"></constructor-arg>
+                <constructor-arg type="int" value="1"></constructor-arg>
+                <property  name="department" > <ref bean="dept"/></property>
+         </bean>
+         
+         <bean  id="teacher" class="com.examples.beans.xmls.Teacher">
+                <constructor-arg ref="subject" ></constructor-arg>
+                <constructor-arg value="Joshua"></constructor-arg>
+                <property  name="employeeNo" value="100"></property>
+         </bean>
+
+        <!-- more bean definitions go here -->
+
+</beans>
