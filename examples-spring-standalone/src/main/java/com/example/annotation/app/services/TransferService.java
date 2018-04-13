@@ -6,5 +6,8 @@ import org.springframework.stereotype.Service;
 public class TransferService {
 	
 
+	public void transfer() {
+		System.out.println("Called  transfer with no argument");
+	}
 
 }

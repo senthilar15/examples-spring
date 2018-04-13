@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.ComponentScan.Filter;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.context.annotation.FilterType;
 
 import com.example.annotation.movies.ActionMovieCatelog;
@@ -30,9 +31,10 @@ import com.example.annotation.movies.qualifiers.MovieQualifier;
  */
 
 @Configuration
-@ComponentScan(basePackages = "com.example.annotation.movies",
+@ComponentScan(basePackages = "com.example.annotation.movies com.example.annotation.aspects  com.example.annotation.app",
 includeFilters = @Filter(type = FilterType.REGEX, pattern = "com\\.example\\.*"),
 excludeFilters = @Filter(type = FilterType.REGEX, pattern = ".*.SimpleMovieLister" ))
+@EnableAspectJAutoProxy
 public class MovieConfiguration {
 	
 	
