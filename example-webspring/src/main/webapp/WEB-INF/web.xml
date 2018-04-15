@@ -18,7 +18,7 @@
         specified for component-scanning -->
     <context-param>
         <param-name>contextConfigLocation</param-name>
-        <param-value>com.acme.AppConfig</param-value>
+        <param-value>com.spring.core.config.AppRootConfig</param-value>
     </context-param>
 
     <!-- Bootstrap the root application context as usual using ContextLoaderListener -->
@@ -42,7 +42,7 @@
             and fully-qualified @Configuration classes -->
         <init-param>
             <param-name>contextConfigLocation</param-name>
-            <param-value>com.acme.web.MvcConfig</param-value>
+            <param-value>com.spring.web.config.AppWebConfig</param-value>
         </init-param>
     </servlet>
 
