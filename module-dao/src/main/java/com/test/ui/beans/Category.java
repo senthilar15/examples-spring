@@ -8,17 +8,17 @@ import javax.validation.constraints.Size;
 
 public class Category {
 	
-	@NotNull
-	@Min(3)
-	private int id;
-	@NotNull
-    @Size(min=10, max=50)
+	@NotNull(message = "error.id.notnull")
+	@Min(value = 3,message="error.id.min")
+	private Integer id;
+	@NotNull(message = "error.category.notnull")
+    @Size(min=10, max=50,message="error.category.size")
 	private String category;
-	@NotNull
-    @Size(min=10, max=60)
+	@NotNull(message = "error.desc.notnull")
+    @Size(min=10, max=50,message="error.desc.size")
 	private String description;
-	@NotNull
-	@Min(3)
+	@NotNull(message = "error.parentcategory.notnull")
+	@Min(value = 3,message="error.parentcategory.min")
 	private int parent_Category;
 
 

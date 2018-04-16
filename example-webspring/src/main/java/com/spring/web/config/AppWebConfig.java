@@ -20,7 +20,7 @@ import com.spring.web.controllers.BookStoreController;
 
 @Configuration
 @EnableWebMvc
-@ComponentScans({@ComponentScan(basePackageClasses = {AddressController.class,BookStoreController.class})})
+@ComponentScan(basePackages = "com.spring.web")
 public class AppWebConfig implements WebMvcConfigurer {
 
 	
@@ -32,7 +32,7 @@ public class AppWebConfig implements WebMvcConfigurer {
 	    @Bean
 	    public MessageSource messageSource() {
 	        ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
-	        messageSource.setBasename("validationmessages");
+	        messageSource.setBasename("classpath:/validationmessages");
 	        messageSource.setDefaultEncoding("UTF-8");
 	        return messageSource;
 	    }
