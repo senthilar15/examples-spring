@@ -14,6 +14,8 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.i18n.CookieLocaleResolver;
 import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 
+import com.spring.web.interceptors.RequestInterceptor;
+
 @Configuration
 @EnableWebMvc
 @ComponentScan(basePackages = "com.spring.web")
@@ -48,5 +50,7 @@ public class AppWebConfig implements WebMvcConfigurer {
 			LocaleChangeInterceptor interceptor = new LocaleChangeInterceptor();
 			interceptor.setParamName("lang");
 			registry.addInterceptor(interceptor);
+			registry.addInterceptor(new RequestInterceptor());
+			
 	    }
 }

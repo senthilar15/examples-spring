@@ -4,6 +4,9 @@ import java.util.Properties;
 
 import javax.sql.DataSource;
 
+import org.hibernate.MultiTenancyStrategy;
+import org.hibernate.context.spi.CurrentTenantIdentifierResolver;
+import org.hibernate.engine.jdbc.connections.spi.MultiTenantConnectionProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -22,20 +25,26 @@ import com.zaxxer.hikari.HikariDataSource;
 @Configuration
 @EnableTransactionManagement
 @PropertySource("classpath:application.properties")
-@ComponentScan(basePackages = "com.spring")
+@ComponentScan(basePackages = "com.spring com.test.jpa")
 public class AppRootConfig {
 	
 	
 	@Autowired
 	private Environment env;
 	
+	@Autowired
+	private MultiTenantConnectionProvider multiTenantConnectionProvider;
+	
+	@Autowired
+	private CurrentTenantIdentifierResolver currentTenantIdentifierResolver;
+	
 	
 	@Bean
 	public LocalContainerEntityManagerFactoryBean getEntityManagerFactoryBean() {
 		LocalContainerEntityManagerFactoryBean lcemfb = new LocalContainerEntityManagerFactoryBean();
 		lcemfb.setJpaVendorAdapter(getJpaVendorAdapter());
-		lcemfb.setDataSource(dataSource());
-		lcemfb.setPersistenceUnitName("myJpaPersistenceUnit");
+		//lcemfb.setDataSource(dataSource());
+		//lcemfb.setPersistenceUnitName("myJpaPersistenceUnit");
 		lcemfb.setPackagesToScan("com.test.jpa");
 		lcemfb.setJpaProperties(jpaProperties());
 		return lcemfb;
@@ -77,6 +86,9 @@ public class AppRootConfig {
          properties.put("hibernate.dialect", env.getProperty("hibernate.dialect"));
          properties.put("hibernate.show_sql", env.getProperty("hibernate.show_sql"));
          properties.put("hibernate.format_sql", env.getProperty("hibernate.format_sql"));
+         properties.put("hibernate.multiTenancy", MultiTenancyStrategy.DATABASE);
+         properties.put("hibernate.multi_tenant_connection_provider", multiTenantConnectionProvider);
+         properties.put("hibernate.tenant_identifier_resolver", currentTenantIdentifierResolver);
          return properties;        
    }
 
