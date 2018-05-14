@@ -4,6 +4,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -20,6 +21,15 @@ public class BookStoreController {
 	
 	@Autowired
 	private BookStroreService bkService;
+	
+	
+	
+	
+	@RequestMapping(value ="/category/{id}", method=RequestMethod.GET)
+	@ResponseStatus(HttpStatus.OK)
+	public Category findCategory(@PathVariable int category ) {
+		return bkService.findCategory(category);	
+	}
 	
 	
 	@RequestMapping(value ="/category", method=RequestMethod.POST,  headers = {"Content-Type=application/JSON"})
